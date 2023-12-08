@@ -15,7 +15,7 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-    origin: 'http://localhost:3000', // Client app's URL
+    origin: 'https://6573ac8040c3bb757995098e--precious-tiramisu-575d5c.netlify.app', // Client app's URL
     methods: ['GET', 'POST'] // Allowed HTTP methods
 }));
 app.use(express.json());
