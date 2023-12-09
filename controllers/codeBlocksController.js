@@ -7,6 +7,13 @@ const {
     saveCodeBlockSolutionByTitleHandler
 } = require("../handlers/codeBlocksHandler");
 
+/**
+ * Get All Titles Controller
+ * @description a controller to get all titles of code blocks from db
+ * @param req - express request object
+ * @param res - express response object
+ * @return {Promise} express response
+ */
 const getAllTitlesController = async (req, res) => {
     try {
         const result = await getCodeBlocksTitlesHandler() // get all titles from handler;
@@ -30,12 +37,17 @@ const getAllTitlesController = async (req, res) => {
     }
 }
 
-
+/**
+ * Get A Code Block For A Specific Title
+ * @description a controller to get code blocks by title
+ * @param req - express request object
+ * @param res - express response object
+ * @return {Promise} express response
+ */
 const getCodeBlockByTitleController = async (req, res) => {
-    const {title} = req.params; // Assuming the title is sent as a query parameter
-
+    const {title} = req.params;
     try {
-        const codeBlock = await getCodeBlockByTitleHandler(title);
+        const codeBlock = await getCodeBlockByTitleHandler(title); // returns the code block belongs to the given title
 
         if (codeBlock) {
             res.status(200).json({
@@ -58,13 +70,19 @@ const getCodeBlockByTitleController = async (req, res) => {
 
 }
 
+
+/**
+ * Check The Student's Solution Controller
+ * @description a controller to get the solution from the db, and compare to the student's solution
+ * @param req - express request object
+ * @param res - express response object
+ * @return {Promise} express response
+ */
 const checkCodeBlockSolutionByTitleController = async (req, res) => {
     try {
         const {title} = req.params;
         const {solution} = req.body;
-        console.log(`[codeBlocksController](${checkCodeBlockSolutionByTitleController.name}: title: ${title}, solution: ${solution}`)
-        const codeBlock = await checkCodeBlockSolutionByTitleHandler(title, solution);
-        console.log(`[codeBlocksController](${checkCodeBlockSolutionByTitleController.name}: codeBlock man: ${JSON.stringify(codeBlock)}`)
+        const codeBlock = await checkCodeBlockSolutionByTitleHandler(title, solution); // passes the solution to corresponding handler
         if (codeBlock && codeBlock[0]) {
             return res.status(200).json({
                 success: true,
@@ -85,7 +103,13 @@ const checkCodeBlockSolutionByTitleController = async (req, res) => {
     }
 }
 
-
+/**
+ * Save The Student's Solution Controller
+ * @description a controller save the student's solution
+ * @param req - express request object
+ * @param res - express response object
+ * @return {Promise} express response
+ */
 const saveCodeBlockSolutionByTitleController = async (req, res) => {
     try {
         const {title} = req.params;

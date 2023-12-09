@@ -1,6 +1,12 @@
 const codeBlocksDal = require('../dal/codeBlocksDal');
 const mongoDal = require('./db/connection')
 
+/**
+ * Get Code Blocks Service
+ * @description Retrieves code blocks from MongoDB
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of code blocks
+ * @throws {Error} Throws an error if there's an issue retrieving code blocks from MongoDB
+ */
 async function getCodeBlocks() {
     try {
         const db = mongoDal.getClient().db('codeSessionsApp');
@@ -14,16 +20,7 @@ async function getCodeBlocks() {
     }
 }
 
-// const getCodeBlockByTitle = async (title) => {
-//     try {
-//         const result = await codeBlocksDal.find({ title: title });
-//         return result[0]; // Assuming the result is an array and you want to return the first match
-//     } catch (error) {
-//         console.error('Error in getCodeBlockByTitle (Service):', error);
-//         throw error;
-//     }
-// };
+
 module.exports = {
     getCodeBlocks,
-    // getCodeBlockByTitle
 };

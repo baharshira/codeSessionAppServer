@@ -1,5 +1,5 @@
 /**
- * module imprts
+ * module imports
  */
 const express = require("express");
 const cors = require("cors");
@@ -15,7 +15,6 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-    // origin: 'https://6573ac8040c3bb757995098e--precious-tiramisu-575d5c.netlify.app', // Client app's URL
     origin: 'https://inspiring-tiramisu-1c89f0.netlify.app', // Client app's URL
     methods: ['GET', 'POST'] // Allowed HTTP methods
 }));
@@ -35,9 +34,6 @@ const io = socketIo(server, {
     }
 });
 
-// io.on('connection', (socket) => {
-//     // Handle WebSocket events
-// });
 
 io.on('connection', (socket) => {
     socket.on('codeChange', (codeContent) => {
