@@ -15,7 +15,7 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-    origin: 'https://inspiring-tiramisu-1c89f0.netlify.app', // Client app's URL
+    origin: 'https://65746c23c999e561ea826a36--stalwart-daifuku-d0ae9a.netlify.app', // Client app's URL
     methods: ['GET', 'POST'] // Allowed HTTP methods
 }));
 app.use(express.json());
@@ -29,7 +29,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
     cors: {
-        origin: 'https://inspiring-tiramisu-1c89f0.netlify.app',
+        origin: 'https://65746c23c999e561ea826a36--stalwart-daifuku-d0ae9a.netlify.app',
         methods: ['GET', 'POST']
     }
 });
