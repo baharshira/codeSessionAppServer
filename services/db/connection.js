@@ -13,7 +13,6 @@ const client = new MongoClient(MONGO_URL, {
 const connectToDb = async () => {
     try {
         await client.connect();
-        await client.db("admin").command({ ping: 1 });
         console.log("Connected to MongoDB Atlas!");
     } catch (error) {
         console.error('Error connecting to MongoDB Atlas:', error);
@@ -21,7 +20,7 @@ const connectToDb = async () => {
 }
 
 const getDbInstance = () => {
-    return client.db('codeSessionsApp');
+    return client.db('codeSessionsApp'); // return a db instance
 }
 
 const disconnectFromDb = async () => {
