@@ -1,7 +1,13 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
+
+// I know that a more secured way is to use a secret or environment variable, rather than put the connection string in the code
 const MONGO_URL = "mongodb+srv://codeSessionsApp-backendUsername:WORLaEPsXY9Cm8Sn@codesessionsdb.rhco3f3.mongodb.net/?retryWrites=true&w=majority";
 
+/**
+ * MongoDB client instance.
+ * @constant {MongoClient}
+ */
 const client = new MongoClient(MONGO_URL, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -10,6 +16,12 @@ const client = new MongoClient(MONGO_URL, {
     }
 });
 
+/**
+ * Connect to MongoDB Atlas
+ * @function
+ * @async
+ * @return {Promise<void>} A promise that resolves after successfully connecting to MongoDB Atlas.
+ */
 const connectToDb = async () => {
     try {
         await client.connect();
@@ -19,10 +31,21 @@ const connectToDb = async () => {
     }
 }
 
+/**
+ * Get MongoDB Database Instance
+ * @function
+ * @return {Db} The MongoDB database instance.
+ */
 const getDbInstance = () => {
-    return client.db('codeSessionsApp'); // return a db instance
+    return client.db('codeSessionsApp'); // Return a DB instance
 }
 
+/**
+ * Disconnect to MongoDB Atlas
+ * @function
+ * @async
+ * @return {Promise<void>} A promise that resolves after successfully disconnecting to MongoDB Atlas.
+ */
 const disconnectFromDb = async () => {
     try {
         await client.close();

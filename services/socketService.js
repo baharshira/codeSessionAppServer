@@ -1,4 +1,3 @@
-// services/socketService.js
 const { Server } = require("socket.io");
 
 /**
@@ -8,6 +7,7 @@ const { Server } = require("socket.io");
  * @returns {void}
  */
 const createSocketServer = (httpServer) => {
+    // Create a new Socket.IO server instance
     const io = new Server(httpServer, {
         cors: {
             origin: "http://localhost:3000",
@@ -15,6 +15,7 @@ const createSocketServer = (httpServer) => {
         },
     });
 
+    // Event handler for a new WebSocket connection
     io.on("connection", (socket) => {
         console.log(`User Connected: ${socket.id}`);
     });

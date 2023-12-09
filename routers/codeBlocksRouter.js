@@ -5,20 +5,20 @@ const {getAllTitlesController, getCodeBlockByTitleController, checkCodeBlockSolu
 } = require("../controllers/codeBlocksController");
 
 /**
- * endpoints of code blocks router
+ * Endpoints of Code Blocks Router
  */
 
-// get all titles of code blocks
+// Get all titles of code blocks
 codeBlocksRouter.get('/titles', getAllTitlesController);
 
-// get code block by title
+// Get code block by title
 codeBlocksRouter.get('/:title', getCodeBlockByTitleController);
 
-// check solution by title
+// Check solution by title
 codeBlocksRouter.post('/check/:title', checkCodeBlockSolutionByTitleController)
 
 
-// save current solution by title
+// Save current solution by title
 codeBlocksRouter.post('/save/:title', saveCodeBlockSolutionByTitleController)
 
 

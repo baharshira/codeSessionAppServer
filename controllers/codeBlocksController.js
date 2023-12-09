@@ -1,5 +1,3 @@
-const codeBlocks = require("../dal/codeBlocksDal");
-const codeBlocksService = require('../services/codeBlocksService');
 const {
     getCodeBlocksTitlesHandler,
     getCodeBlockByTitleHandler,
@@ -80,8 +78,8 @@ const getCodeBlockByTitleController = async (req, res) => {
  */
 const checkCodeBlockSolutionByTitleController = async (req, res) => {
     try {
-        const {title} = req.params;
-        const {solution} = req.body;
+        const {title} = req.params; // the title is part of the given params
+        const {solution} = req.body; // the solution is part of the given params
         const codeBlock = await checkCodeBlockSolutionByTitleHandler(title, solution); // passes the solution to corresponding handler
         if (codeBlock && codeBlock[0]) {
             return res.status(200).json({

@@ -3,13 +3,13 @@ const {find, update} = require("../dal/codeBlocksDal");
 
 /**
  * Get All Code Blocks Titles Handler
- * @description a function that build a params object and pass it to the find function
- * @return {Promise<*|*[]>}
+ * @description Fetches all code block titles from the database and returns a promise with the result.
+ * @return {Promise<Object>} A promise that resolves to the result of fetching code block titles.
  */
 const getCodeBlocksTitlesHandler = async () => {
     const params = {
         collectionName: 'codeBlocks',
-        proj: {title: 1, _id: 0} // a projection to get only the title fields
+        proj: {title: 1, _id: 0} // Projection to get only the title fields
     }
     const result = await find(params)
     console.info(`result inside getCodeBlocksTitlesHandler is: ${JSON.stringify(result)}`);
@@ -19,13 +19,14 @@ const getCodeBlocksTitlesHandler = async () => {
 
 /**
  * Get A Specific Code Block By Title Handler
- * @description a function that gets a selected title from the user and returns the corresponding code block from the db
- * @return {Promise<*|*[]>}
+ * @description Fetches a specific code block from the database based on the provided title and returns a promise with the result.
+ * @param {string} title - The title of the code block to fetch.
+ * @return {Promise<Object>} A promise that resolves to the result of fetching the code block by title.
  */
 const getCodeBlockByTitleHandler = async (title) => {
     const params = {
         collectionName: 'codeBlocks',
-        query: {title: title} //query by title
+        query: {title: title} // Query by title, the title is given as a parameter and the query is by title
     }
     const result = await find(params)
     console.info(`result inside getCodeBlockByTitleHandler is: ${JSON.stringify(result)}`);
@@ -35,13 +36,15 @@ const getCodeBlockByTitleHandler = async (title) => {
 
 /**
  * Check The Student's Solution Handler
- * @description a function that gets the student's solution and compare it to the db's solution
- * @return {Promise<*|*[]>}
+ * @description Compares the student's solution with the corresponding code block solution in the database.
+ * @param {string} title - The title of the code block.
+ * @param {string} solution - The student's solution to check.
+ * @return {Promise<Object>} A promise that resolves to the result of checking the student's solution.
  */
 const checkCodeBlockSolutionByTitleHandler = async (title, solution) => {
     const params = {
         collectionName: 'codeBlocks',
-        query: {title, solution} // given the title and solution, checks the student's solution
+        query: {title, solution} // Given the title and solution, checks the student's solution
     }
     const result = await find(params)
     console.info(`result inside checkCodeBlockSolutionByTitleHandler is: ${JSON.stringify(result)}`);
@@ -51,8 +54,10 @@ const checkCodeBlockSolutionByTitleHandler = async (title, solution) => {
 
 /**
  * Save The Current Solution Handler
- * @description a function that saves the student's solution
- * @return {Promise<*|*[]>}
+ * @description Saves the student's solution for a specific code block.
+ * @param {string} title - The title of the code block.
+ * @param {string} solution - The student's solution to save.
+ * @return {Promise<Object>} A promise that resolves to the result of saving the student's solution.
  */
 const saveCodeBlockSolutionByTitleHandler = async (title, solution) => {
     const params = {
